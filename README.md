@@ -1,21 +1,10 @@
-# NextJS Default Template
+# NextJS Default Boilerplate
 
 This is a NextJS based template with following setup:
 
 - Full Tailwind config & basic css scaffold (+ production setup w/ purge-css & cssnano)
 - Reason + ReasonReact
 - Basic Reason Bindings for Next
-- Preconfigured Dependencies: `reason-react`, `bs-fetch`, `@glennsl/bs-json`
-
-## How to remove unneeded Reason bindings
-
-```
-npm rm @glennsl/bs-json --save
-npm rm bs-fetch --save
-```
-
-After removing the dependency, make sure to update your `bsconfig.js`
-dependencies as well.
 
 ## Development
 
@@ -50,4 +39,3 @@ NODE_ENV=production postcss styles/main.css -o test.css
 npm run build
 PORT=3001 npm start
 ```
-
