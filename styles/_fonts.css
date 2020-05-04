@@ -1,39 +1,67 @@
 @font-face {
-  font-family: 'Quicksand';
-  src: local('Quicksand Light'), local('Quicksand-Light'),
-    url('/fonts/Quicksand-Light.woff2') format('woff2');
+  font-family: 'Rajdhani';
+  src: local('Rajdhani Light'), local('Rajdhani-Light'),
+    url('/fonts/Rajdhani-Light.woff2') format('woff2');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Quicksand';
-  src: local('Quicksand Regular'), local('Quicksand-Regular'),
-    url('/fonts/Quicksand-Regular.woff2') format('woff2');
+  font-family: 'Rajdhani';
+  src: local('Rajdhani Regular'), local('Rajdhani-Regular'),
+    url('/fonts/Rajdhani-Regular.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Quicksand';
-  src: local('Quicksand Medium'), local('Quicksand-Medium'),
-    url('/fonts/Quicksand-Medium.woff2') format('woff2');
+  font-family: 'Rajdhani';
+  src: local('Rajdhani Medium'), local('Rajdhani-Medium'),
+    url('/fonts/Rajdhani-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Quicksand';
-  src: local('Quicksand SemiBold'), local('Quicksand-SemiBold'),
-    url('/fonts/Quicksand-SemiBold.woff2') format('woff2');
+  font-family: 'Rajdhani';
+  src: local('Rajdhani SemiBold'), local('Rajdhani-SemiBold'),
+    url('/fonts/Rajdhani-SemiBold.woff2') format('woff2');
   font-weight: 600;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Quicksand';
-  src: local('Quicksand Bold'), local('Quicksand-Bold'),
-    url('/fonts/Quicksand-Bold.woff2') format('woff2');
+  font-family: 'Rajdhani';
+  src: local('Rajdhani Bold'), local('Rajdhani-Bold'),
+    url('/fonts/Rajdhani-Bold.woff2') format('woff2');
   font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('/fonts/TitilliumWeb-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('/fonts/TitilliumWeb-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('/fonts/TitilliumWeb-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url('/fonts/TitilliumWeb-SemiBold.woff2') format('woff2');
+  font-weight: 600;
   font-style: normal;
 }

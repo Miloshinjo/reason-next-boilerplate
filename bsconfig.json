@@ -3,8 +3,8 @@
   "namespace": false,
   "reason": { "react-jsx": 3 },
   "refmt": 3,
-  "bs-dependencies": ["reason-react", "reason-promise"],
-  "ppx-flags": [],
+  "bs-dependencies": ["reason-react", "reason-promise", "re-formality"],
+  "ppx-flags": ["re-formality/ppx"],
   "sources": [
     { "dir": "common" },
     { "dir": "bindings" },

@@ -1,10 +1,25 @@
 module.exports = {
   theme: {
-    extend: {},
-    /* We override the default font-families with our own default prefs  */
+    extend: {
+      colors: {
+        primary: '#8b0000',
+        secondary: '#F7B538',
+      },
+    },
     fontFamily: {
+      heading: [
+        'Titillium Web',
+        'Inter',
+        'SF Pro Text',
+        'Roboto',
+        '-apple-system',
+        'BlinkMacSystemFont',
+        'Helvetica Neue',
+        'Arial',
+        'sans-serif',
+      ],
       sans: [
-        'Quicksand',
+        'Rajdhani',
         'SF Pro Text',
         'Roboto',
         '-apple-system',
@@ -32,23 +47,10 @@ module.exports = {
         'monospace',
       ],
     },
-    rotate: {
-      '-315': '-315deg',
-      '-180': '-180deg',
-      '-135': '-135deg',
-      '-90': '-90deg',
-      '-45': '-45deg',
-      '0': '0',
-      '45': '45deg',
-      '90': '90deg',
-      '135': '135deg',
-      '180': '180deg',
-      '270': '270deg',
-      '315': '315deg',
-    },
   },
   variants: {
     width: ['responsive'],
+    textShadow: ['responsive', 'hover'],
   },
-  plugins: [],
+  plugins: [require('tailwindcss-textShadow')],
 };

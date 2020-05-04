@@ -8,7 +8,7 @@ let make = (~children) => {
         name="viewport"
         content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"
       />
-      <title> "ReasonMl"->React.string </title>
+      <title> "DnD Armory"->React.string </title>
     </Head>
     <main> children </main>
   </>;
