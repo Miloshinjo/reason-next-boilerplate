@@ -34,7 +34,7 @@ let make = (~selected) => {
   let router = Router.useRouter();
   let form =
     LoginForm.useForm(
-      ~initialInput={email: "", password: ""},
+      ~initialInput={email: "milos@test.com", password: "password1"},
       ~onSubmit=(output, cb) => {
         Js.Promise.(
           Api.login(output.email, output.password)
@@ -42,6 +42,7 @@ let make = (~selected) => {
                router.replace("/");
                resolve(Js.log(data));
              })
+          |> catch(error => resolve(Js.log(error)))
           |> ignore
         );
 

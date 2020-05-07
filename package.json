@@ -13,7 +13,6 @@
     "express": "^4.17.1",
     "gentype": "^3.6.0",
     "gray-matter": "^4.0.2",
-    "http-proxy-middleware": "^1.0.3",
     "next": "^9.3.6",
     "next-transpile-modules": "^3.2.0",
     "re-formality": "^4.0.0-beta.7",
@@ -38,6 +37,7 @@
     "autoprefixer": "^9.5.1",
     "bs-platform": "^7.1.1",
     "cssnano": "^4.1.10",
+    "http-proxy-middleware": "^1.0.3",
     "postcss-easy-import": "^3.0.0",
     "tailwindcss": "1.4.0"
   }

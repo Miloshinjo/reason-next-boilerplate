@@ -1,7 +1,20 @@
 open Axios;
 
 let axios =
-  Instance.create(makeConfig(~baseURL="http://127.0.0.1:8080/api/v1", ()));
+  Instance.create(
+    makeConfig(
+      ~baseURL="/api/v1",
+      ~proxy={
+        "host": 8080,
+        "port": 3000,
+        "auth": {
+          "username": "",
+          "password": "",
+        },
+      },
+      (),
+    ),
+  );
 
 let login = (email, password) => {
   let data = {"email": email, "password": password};
