@@ -1,5 +1,6 @@
 module Email = Util.Email;
 module Password = Util.Password;
+module Router = Next.Router;
 
 let formStyles = selected => {
   selected
@@ -30,13 +31,21 @@ module LoginForm = [%form
 
 [@react.component]
 let make = (~selected) => {
+  let router = Router.useRouter();
   let form =
     LoginForm.useForm(
       ~initialInput={email: "", password: ""},
       ~onSubmit=(output, cb) => {
-        Js.log("Submitted my first reason form");
-        Js.log(output);
-        Js.log(cb);
+        Js.Promise.(
+          Api.login(output.email, output.password)
+          |> then_(data => {
+               router.replace("/");
+               resolve(Js.log(data));
+             })
+          |> ignore
+        );
+
+        cb.reset();
       },
     );
 

@@ -49,11 +49,8 @@ let make = (~selected) => {
     RegisterForm.useForm(
       ~initialInput={email: "", password: "", passwordConfirm: ""},
       ~onSubmit=(output, cb) => {
-        Js.log("Submitted my first reason form");
-        Js.log(output);
-        Js.log(cb);
-      },
-    );
+      cb.reset()
+    });
 
   <form
     className={selected->formStyles}

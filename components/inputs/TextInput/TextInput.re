@@ -30,7 +30,7 @@ let make =
     />
     {switch (error) {
      | Some(Error(message)) =>
-       <div className="text-red-400 font-medium mt-1">
+       <div className="text-yellow-600 font-medium mt-1">
          message->React.string
        </div>
      | Some(Ok(_))

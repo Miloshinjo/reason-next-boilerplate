@@ -10,7 +10,7 @@ module Email = {
     switch (email) {
     | "" => Error("Please enter an email")
     | _ as value when !emailRegex->Js.Re.test_(value) =>
-      Error("Please enter a real email")
+      Error("Please enter a valid email")
     | _ => Ok(email)
     };
   };

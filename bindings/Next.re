@@ -19,7 +19,7 @@ module GetStaticProps = {
   };
 
   type t('props, 'params) =
-    context('props, 'params) => Promise.t({. "props": 'props});
+    context('props, 'params) => Js.Promise.t({. "props": 'props});
 };
 
 module GetStaticPaths = {
@@ -32,7 +32,7 @@ module GetStaticPaths = {
     fallback: bool,
   };
 
-  type t('params) = unit => Promise.t(return('params));
+  type t('params) = unit => Js.Promise.t(return('params));
 };
 
 module Link = {
@@ -89,6 +89,8 @@ module Router = {
     route: string,
     asPath: string,
     events: Events.t,
+    push: string => unit,
+    replace: string => unit,
   };
 
   [@bs.module "next/router"] external useRouter: unit => router = "useRouter";
