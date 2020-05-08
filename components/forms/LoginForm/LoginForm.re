@@ -34,17 +34,14 @@ let make = (~selected) => {
   let router = Router.useRouter();
   let form =
     LoginForm.useForm(
-      ~initialInput={email: "milos@test.com", password: "password1"},
+      ~initialInput={email: "milos@test.com", password: "password33"},
       ~onSubmit=(output, cb) => {
-        Js.Promise.(
-          Api.login(output.email, output.password)
-          |> then_(data => {
-               router.replace("/");
-               resolve(Js.log(data));
-             })
-          |> catch(error => resolve(Js.log(error)))
-          |> ignore
-        );
+        Api.login(output.email, output.password)
+        |> Js.Promise.then_(data => {
+             Js.log(data);
+             Js.Promise.resolve();
+           })
+        |> ignore;
 
         cb.reset();
       },
