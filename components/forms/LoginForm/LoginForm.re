@@ -17,6 +17,8 @@ module LoginForm = [%form
     email: Email.t,
     password: Password.t,
   };
+  type submissionError =
+    | InvalidCreds(string);
   let validators = {
     email: {
       strategy: OnFirstBlur,
@@ -32,20 +34,23 @@ module LoginForm = [%form
 [@react.component]
 let make = (~selected) => {
   let router = Router.useRouter();
+
   let form =
     LoginForm.useForm(
       ~initialInput={email: "milos@test.com", password: "password33"},
-      ~onSubmit=(output, cb) => {
-        Api.login(output.email, output.password)
-        |> Js.Promise.then_(data => {
-             Js.log(data);
-             Js.Promise.resolve();
-           })
-        |> ignore;
+      ~onSubmit=(output, callbacks) => {
+      Api.login(output.email, output.password)
+      |> Js.Promise.then_(result => {
+           switch (result) {
+           | Ok(_) => router.push("/")
+           | Error(err) =>
+             callbacks.notifyOnFailure(InvalidCreds(err##message))
+           };
 
-        cb.reset();
-      },
-    );
+           Js.Promise.resolve();
+         })
+      |> ignore
+    });
 
   <form
     className={selected->formStyles}
@@ -91,6 +96,10 @@ let make = (~selected) => {
     <FormButton disabled={form.submitting}>
       "Log in to your account!"->React.string
     </FormButton>
-    <button disabled={form.submitting} />
+    {switch (form.status) {
+     | SubmissionFailed(InvalidCreds(message)) =>
+       <div> message->React.string </div>
+     | _ => React.null
+     }}
   </form>;
 };

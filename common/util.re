@@ -34,12 +34,7 @@ module Errors = {
 
   let catchAsync = error => {
     let error = error->promiseErrorToJsObj;
-    let message =
-      switch (error##response##data##message) {
-      | None => "An error occured"
-      | Some(error) => error
-      };
 
-    Js.Promise.resolve(message);
+    Js.Promise.resolve(Error(error##response##data));
   };
 };

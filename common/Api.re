@@ -21,7 +21,7 @@ let login = (email, password) => {
   let data = {"email": email, "password": password};
 
   axios->Instance.postData("/users/login", data)
-  |> Js.Promise.then_(response => Js.Promise.resolve(response##data))
+  |> Js.Promise.then_(response => {Js.Promise.resolve(Ok(response##data))})
   |> Js.Promise.catch(error => error->Errors.catchAsync);
 };
 
