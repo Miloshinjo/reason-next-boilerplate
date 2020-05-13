@@ -1,13 +1,7 @@
 module Email = Util.Email;
 module Password = Util.Password;
 module Router = Next.Router;
-
-let formStyles = selected => {
-  selected
-    ? "flex flex-col p-8 xl:p-16 rounded-lg bg-white shadow absolute inset-x-0 transition duration-500 z-10 ease"
-    : "flex flex-col p-8 xl:p-16 rounded-lg bg-white shadow absolute inset-x-0 transition duration-500 transform translate-x-full z-1 opacity-0 ease-out";
-};
-
+open SharedStyles;
 module LoginForm = [%form
   type input = {
     email: string,
@@ -53,7 +47,7 @@ let make = (~selected) => {
     });
 
   <form
-    className={selected->formStyles}
+    className={selected->authFormStyles}
     onSubmit={event => {
       event->ReactEvent.Form.preventDefault;
       form.submit();
@@ -68,12 +62,13 @@ let make = (~selected) => {
       value={form.input.email}
       disabled={form.submitting}
       onBlur={_ => form.blurEmail()}
-      onChange={event =>
+      onChange={event => {
+        form.dismissSubmissionResult();
         form.updateEmail(
           (input, value) => {...input, email: value},
           event->ReactEvent.Form.target##value,
-        )
-      }
+        );
+      }}
       error={form.emailResult}
     />
     <TextInput
@@ -84,12 +79,13 @@ let make = (~selected) => {
       value={form.input.password}
       disabled={form.submitting}
       onBlur={_ => form.blurPassword()}
-      onChange={event =>
+      onChange={event => {
+        form.dismissSubmissionResult();
         form.updatePassword(
           (input, value) => {...input, password: value},
           event->ReactEvent.Form.target##value,
-        )
-      }
+        );
+      }}
       error={form.passwordResult}
     />
     <div className="mt-8" />
@@ -98,7 +94,7 @@ let make = (~selected) => {
     </FormButton>
     {switch (form.status) {
      | SubmissionFailed(InvalidCreds(message)) =>
-       <div> message->React.string </div>
+       <div className=formError> message->React.string </div>
      | _ => React.null
      }}
   </form>;

@@ -1,10 +1,5 @@
 module Email = Util.Email;
-
-let formStyles = selected => {
-  selected
-    ? "flex flex-col p-8 xl:p-16 rounded-lg bg-white shadow absolute inset-x-0 transition duration-500 z-10 ease"
-    : "flex flex-col p-8 xl:p-16 rounded-lg bg-white shadow absolute inset-x-0 transition duration-500 transform translate-x-full z-1 opacity-0 ease-out";
-};
+open SharedStyles;
 
 module RegisterForm = [%form
   type input = {
@@ -53,7 +48,7 @@ let make = (~selected) => {
     });
 
   <form
-    className={selected->formStyles}
+    className={selected->authFormStyles}
     onSubmit={event => {
       event->ReactEvent.Form.preventDefault;
       form.submit();
