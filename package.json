@@ -24,21 +24,20 @@
     "tailwindcss-textshadow": "^2.0.0"
   },
   "scripts": {
+    "start": "concurrently \"npm run bs:start\" \"npm run dev\"",
     "dev": "node server.js",
     "build": "bsb -clean-world -make-world && next build",
     "now-build": "bsb -clean-world -make-world && next build",
     "export": "next export",
-    "start": "next start -p $PORT",
     "bs:build": "bsb -make-world",
     "bs:clean": "bsb -clean-world",
     "bs:start": "bsb -make-world -w"
   },
   "devDependencies": {
-    "autoprefixer": "^9.5.1",
     "bs-platform": "^7.1.1",
-    "cssnano": "^4.1.10",
+    "concurrently": "^5.2.0",
     "http-proxy-middleware": "^1.0.3",
-    "postcss-easy-import": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
     "tailwindcss": "1.4.0"
   }
 }

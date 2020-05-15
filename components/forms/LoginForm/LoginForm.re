@@ -12,7 +12,7 @@ module LoginForm = [%form
     password: Password.t,
   };
   type submissionError =
-    | InvalidCreds(string);
+    | SubmissionError(string);
   let validators = {
     email: {
       strategy: OnFirstBlur,
@@ -31,14 +31,15 @@ let make = (~selected) => {
 
   let form =
     LoginForm.useForm(
-      ~initialInput={email: "milos@test.com", password: "password33"},
-      ~onSubmit=(output, callbacks) => {
+      ~initialInput={email: "", password: ""}, ~onSubmit=(output, callbacks) => {
       Api.login(output.email, output.password)
       |> Js.Promise.then_(result => {
            switch (result) {
-           | Ok(_) => router.push("/")
+           | Ok(_) =>
+             Dom.Storage.(localStorage |> setItem("isAuthenticated", "true"));
+             router.push("/");
            | Error(err) =>
-             callbacks.notifyOnFailure(InvalidCreds(err##message))
+             callbacks.notifyOnFailure(SubmissionError(err##message))
            };
 
            Js.Promise.resolve();
@@ -93,7 +94,7 @@ let make = (~selected) => {
       "Log in to your account!"->React.string
     </FormButton>
     {switch (form.status) {
-     | SubmissionFailed(InvalidCreds(message)) =>
+     | SubmissionFailed(SubmissionError(message)) =>
        <div className=formError> message->React.string </div>
      | _ => React.null
      }}
