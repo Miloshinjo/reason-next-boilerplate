@@ -16,30 +16,24 @@ let axios =
       (),
     ),
   );
-
-let login = (email, password) => {
-  let data = {"email": email, "password": password};
-
-  axios->Instance.postData("/users/login", data)
+let post = (route: string, data) => {
+  data
+  |> axios->Instance.postData(route)
   |> Js.Promise.then_(response => {Js.Promise.resolve(Ok(response##data))})
   |> Js.Promise.catch(error => error->Errors.catchAsync);
 };
 
-let register = (email, password, passwordConfirm) => {
-  let data = {
-    "email": email,
-    "password": password,
-    "passwordConfirm": passwordConfirm,
-  };
+let get = (route: string) => {
+  axios->Instance.get(route)
+  |> Js.Promise.then_(response => {Js.Promise.resolve(Ok(response##data))})
+  |> Js.Promise.catch(error => error->Errors.catchAsync);
+};
 
-  Js.Promise.(
-    axios->Instance.postData(
-      "/users/signup",
-      {
-        data;
-      },
-    )
-    |> then_(response => resolve(response##data##token))
-    |> catch(error => resolve(Js.log(error)))
-  );
+let login = (email: string, password: string) => {
+  {"email": email, "password": password} |> post("/users/login");
+};
+
+let register = (email: string, password: string, passwordConfirm: string) => {
+  {"email": email, "password": password, "passwordConfirm": passwordConfirm}
+  |> post("/users/signup");
 };

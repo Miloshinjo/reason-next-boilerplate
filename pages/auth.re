@@ -7,7 +7,7 @@ let buttonStyles = "flex justify-center w-1/2 px-12 py-4 font-bold flex-grow out
 
 [@react.component]
 let make = () => {
-  Hooks.useProtectRoute();
+  Hooks.useRedirectFromAuth();
 
   let (selected, setSelected) = React.useState(() => Login);
 

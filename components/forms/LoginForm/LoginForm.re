@@ -1,7 +1,9 @@
 module Email = Util.Email;
+module Auth = Util.Auth;
 module Password = Util.Password;
 module Router = Next.Router;
 open SharedStyles;
+
 module LoginForm = [%form
   type input = {
     email: string,
@@ -15,11 +17,11 @@ module LoginForm = [%form
     | SubmissionError(string);
   let validators = {
     email: {
-      strategy: OnFirstBlur,
+      strategy: OnFirstSuccessOrFirstBlur,
       validate: ({email}) => email->Email.validate,
     },
     password: {
-      strategy: OnFirstBlur,
+      strategy: OnFirstSuccessOrFirstBlur,
       validate: ({password}) => password->Password.validate,
     },
   }
@@ -35,11 +37,8 @@ let make = (~selected) => {
       Api.login(output.email, output.password)
       |> Js.Promise.then_(result => {
            switch (result) {
-           | Ok(_) =>
-             Dom.Storage.(localStorage |> setItem("isAuthenticated", "true"));
-             router.push("/");
-           | Error(err) =>
-             callbacks.notifyOnFailure(SubmissionError(err##message))
+           | Ok(_) => router->Auth.login
+           | Error(err) => callbacks.notifyOnFailure(SubmissionError(err))
            };
 
            Js.Promise.resolve();

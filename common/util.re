@@ -35,6 +35,20 @@ module Errors = {
   let catchAsync = error => {
     let error = error->promiseErrorToJsObj;
 
-    Js.Promise.resolve(Error(error##response##data));
+    switch (error##response) {
+    | Some(_) =>
+      switch (error##response##data##message) {
+      | Some(_) => Js.Promise.resolve(Error(error##response##data##message))
+      | None => Js.Promise.resolve(Error("Weird error occured"))
+      }
+    | None => Js.Promise.resolve(Error("Weird error occured"))
+    };
+  };
+};
+
+module Auth = {
+  let login = (router: Next.Router.router) => {
+    Dom.Storage.(localStorage |> setItem("isAuthenticated", "true"));
+    router.push("/");
   };
 };
