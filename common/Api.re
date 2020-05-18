@@ -16,6 +16,10 @@ let axios =
       (),
     ),
   );
+
+let serverAxios =
+  Instance.create(makeConfig(~baseURL="http://127.0.0.1:8080/api/v1", ()));
+
 let post = (route: string, data) => {
   data
   |> axios->Instance.postData(route)
@@ -23,8 +27,10 @@ let post = (route: string, data) => {
   |> Js.Promise.catch(error => error->Errors.catchAsync);
 };
 
-let get = (route: string) => {
-  axios->Instance.get(route)
+let get = (route: string, ~serverSide=false, ()) => {
+  let axiosInstance = serverSide ? serverAxios : axios;
+
+  axiosInstance->Instance.get(route)
   |> Js.Promise.then_(response => {Js.Promise.resolve(Ok(response##data))})
   |> Js.Promise.catch(error => error->Errors.catchAsync);
 };
