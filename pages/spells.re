@@ -1,31 +1,31 @@
 [@react.component]
-let make = () => {
-  <div className="bg-image min-h-screen"> "Spellbook"->React.string </div>;
-};
-
-let default = make;
-
 type spell = {
+  _id: string,
   name: string,
   level: int,
   school: string,
   slug: string,
 };
 
-type props = {spells: list(spell)};
+type props = {. "spells": Js.t(spell)};
+
+let make = props => {
+  Js.log(props##spells);
+  <div className="bg-image min-h-screen"> "Spellbook"->React.string </div>;
+};
+
+let default = make;
 
 let getStaticProps: Next.GetStaticProps.t(props, {.}) =
   _ctx => {
-    let spells =
-      Api.get("/spells?fields=name,level,school,slug", ~serverSide=true, ())
-      |> Js.Promise.then_(response => {
-           switch (response) {
-           | Ok(_) => Js.Promise.resolve(Js.log("it's good SERVER"))
-           | Error(err) => Js.Promise.resolve(Js.log(err))
-           }
-         });
-
-    let props = {spells: []};
-
-    Js.Promise.resolve({"props": props});
+    Api.get("/spells?fields=name,level,school,slug", ~serverSide=true, ())
+    |> Js.Promise.then_(result => {
+         switch (result) {
+         | Ok(spells) => Js.Promise.resolve({
+                            "props": {
+                              "spells": spells,
+                            },
+                          })
+         }
+       });
   };
