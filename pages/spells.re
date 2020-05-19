@@ -7,11 +7,15 @@ type spell = {
   slug: string,
 };
 
-type props = {. "spells": Js.t(spell)};
+type props = {. "spells": array(Js.t(spell))};
 
 let make = props => {
-  Js.log(props##spells);
-  <div className="bg-image min-h-screen"> "Spellbook"->React.string </div>;
+  <div className="bg-image min-h-screen text-white">
+    {{
+       props##spells->Belt.Array.map(spell => <SpellCard key={spell._id} />);
+     }
+     ->React.array}
+  </div>;
 };
 
 let default = make;
@@ -23,9 +27,10 @@ let getStaticProps: Next.GetStaticProps.t(props, {.}) =
          switch (result) {
          | Ok(spells) => Js.Promise.resolve({
                             "props": {
-                              "spells": spells,
+                              spells: spells,
                             },
                           })
+         | Error(_) => failwith("This should have been handled by nextjs")
          }
        });
   };
