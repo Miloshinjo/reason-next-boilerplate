@@ -6,9 +6,6 @@ const withTM = require('next-transpile-modules')(transpileModules);
 
 const config = {
   pageExtensions: ['jsx', 'js', 'bs.js'],
-  experimental: {
-    reactRefresh: true,
-  },
   webpack: (config, options) => {
     const { isServer } = options;
     if (!isServer) {

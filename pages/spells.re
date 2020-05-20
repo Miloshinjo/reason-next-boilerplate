@@ -10,12 +10,26 @@ type spell = {
 type props = {. "spells": array(Js.t(spell))};
 
 let make = props => {
-  <div className="bg-image min-h-screen text-white">
-    {{
-       props##spells->Belt.Array.map(spell => <SpellCard key={spell._id} />);
-     }
-     ->React.array}
-  </div>;
+  <AppLayout>
+    <div className="bg-gray-200 min-h-screen">
+      <div className="mx-auto px-16 py-6">
+        {{
+           props##spells
+           ->Belt.Array.map(spell =>
+               <SpellCard
+                 key={spell._id}
+                 id={spell._id}
+                 name={spell.name}
+                 level={spell.level}
+                 school={spell.school}
+                 slug={spell.slug}
+               />
+             );
+         }
+         ->React.array}
+      </div>
+    </div>
+  </AppLayout>;
 };
 
 let default = make;
