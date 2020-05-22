@@ -11,8 +11,8 @@ type props = {. "spells": array(Js.t(spell))};
 
 let make = props => {
   <AppLayout>
-    <div className="bg-gray-200 min-h-screen">
-      <div className="mx-auto px-16 py-6">
+    <div className="bg-gray-200 min-h-screen py-12">
+      <div className="mx-auto flex flex-col items-start w-1/2">
         {{
            props##spells
            ->Belt.Array.map(spell =>
