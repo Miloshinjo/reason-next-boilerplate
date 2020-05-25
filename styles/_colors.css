@@ -37,3 +37,43 @@
 .bg-wizard {
   background-color: #2a50a1;
 }
+
+.text-barbarian {
+  color: #e7623e;
+}
+.text-bard {
+  color: #ab6dac;
+}
+.text-cleric {
+  color: #91a1b2;
+}
+.text-druid {
+  color: #7a853b;
+}
+.text-fighter {
+  color: #7f513e;
+}
+.text-monk {
+  color: #51a5c5;
+}
+.text-paladin {
+  color: #b59e54;
+}
+.text-ranger {
+  color: #507f62;
+}
+.text-rogue {
+  color: #555752;
+}
+.text-rogue {
+  color: #555752;
+}
+.text-sorcerer {
+  color: #992e2e;
+}
+.text-warlock {
+  color: #7b469b;
+}
+.text-wizard {
+  color: #2a50a1;
+}

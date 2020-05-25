@@ -66,6 +66,19 @@ let make =
     {active
        ? <div className="px-4 py-2 flex flex-col items-start">
            <p className="text-sm mt-2"> description->React.string </p>
+           <div className="flex mt-2">
+             {classes
+              ->Belt.Array.map(klass => {
+                  <div
+                    className={
+                      "capitalize mr-2 text-sm font-medium text-" ++ klass
+                    }
+                    key=klass>
+                    klass->React.string
+                  </div>
+                })
+              ->React.array}
+           </div>
          </div>
        : React.null}
   </div>;
