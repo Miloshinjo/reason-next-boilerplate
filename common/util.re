@@ -10,6 +10,7 @@ type spell = {
   castingTime: string,
   duration: string,
   classes: array(string),
+  components: array(string),
 };
 
 module Helpers = {

@@ -15,6 +15,7 @@ let make =
       ~classes,
       ~castingTime,
       ~duration,
+      ~components,
     ) => {
   let (active, setActive) = React.useState(() => false);
 
@@ -32,7 +33,7 @@ let make =
     onClick=handleClick>
     <div className="flex items-center">
       <img
-        className="block h-5 w-5 mr-4"
+        className="block h-6 w-6 mr-4"
         src={j|/icons/schools/$school.svg|j}
         alt="Spell School"
       />
@@ -64,9 +65,31 @@ let make =
       </div>
     </div>
     {active
-       ? <div className="px-4 py-2 flex flex-col items-start">
-           <p className="text-sm mt-2"> description->React.string </p>
-           <div className="flex mt-2">
+       ? <div className="px-10 py-2 flex flex-col items-start">
+           <div className="grid grid-cols-4 w-full mt-2">
+             <div className="flex flex-col">
+               <div className="text-xs"> "Casting time"->React.string </div>
+               <div className="font-medium"> castingTime->React.string </div>
+             </div>
+             <div className="flex flex-col">
+               <div className="text-xs"> "Duration"->React.string </div>
+               <div className="font-medium"> duration->React.string </div>
+             </div>
+             <div className="flex flex-col">
+               <div className="text-xs"> "Components"->React.string </div>
+               <div className="font-medium uppercase">
+                 {Js.Array.joinWith(", ", components)->React.string}
+               </div>
+             </div>
+             <div className="flex flex-col">
+               <div className="text-xs"> "School"->React.string </div>
+               <div className="font-medium capitalize">
+                 school->React.string
+               </div>
+             </div>
+           </div>
+           <p className="text mt-4"> description->React.string </p>
+           <div className="flex mt-4">
              {classes
               ->Belt.Array.map(klass => {
                   <div

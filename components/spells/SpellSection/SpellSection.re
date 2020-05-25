@@ -18,6 +18,7 @@ let make = (~spells, ~level) => {
           castingTime={spell.castingTime}
           duration={spell.duration}
           slug={spell.slug}
+          components={spell.components}
         />
       )
     ->React.array;
