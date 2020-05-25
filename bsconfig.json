@@ -9,6 +9,7 @@
     { "dir": "common" },
     { "dir": "bindings" },
     { "dir": "pages", "subdirs": true },
+    { "dir": "templates" },
     { "dir": "components", "subdirs": true },
     { "dir": "styles", "subdirs": true },
     "layouts"
