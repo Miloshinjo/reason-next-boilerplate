@@ -16,6 +16,7 @@ let make =
       ~castingTime,
       ~duration,
       ~components,
+      ~range,
     ) => {
   let (active, setActive) = React.useState(() => false);
 
@@ -69,26 +70,34 @@ let make =
            <div className="grid grid-cols-4 w-full mt-2">
              <div className="flex flex-col">
                <div className="text-xs"> "Casting time"->React.string </div>
-               <div className="font-medium"> castingTime->React.string </div>
+               <div className="font-medium -mt-1">
+                 castingTime->React.string
+               </div>
              </div>
              <div className="flex flex-col">
                <div className="text-xs"> "Duration"->React.string </div>
-               <div className="font-medium"> duration->React.string </div>
+               <div className="font-medium -mt-1">
+                 duration->React.string
+               </div>
              </div>
              <div className="flex flex-col">
                <div className="text-xs"> "Components"->React.string </div>
-               <div className="font-medium uppercase">
+               <div className="font-medium uppercase -mt-1">
                  {Js.Array.joinWith(", ", components)->React.string}
                </div>
              </div>
              <div className="flex flex-col">
+               <div className="text-xs"> "Range"->React.string </div>
+               <div className="font-medium -mt-1"> range->React.string </div>
+             </div>
+             <div className="flex flex-col">
                <div className="text-xs"> "School"->React.string </div>
-               <div className="font-medium capitalize">
+               <div className="font-medium capitalize -mt-1">
                  school->React.string
                </div>
              </div>
            </div>
-           <p className="text mt-4"> description->React.string </p>
+           <p className="text mt-3"> description->React.string </p>
            <div className="flex mt-4">
              {classes
               ->Belt.Array.map(klass => {

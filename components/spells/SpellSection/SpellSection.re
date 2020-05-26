@@ -19,6 +19,7 @@ let make = (~spells, ~level) => {
           duration={spell.duration}
           slug={spell.slug}
           components={spell.components}
+          range={spell.range}
         />
       )
     ->React.array;

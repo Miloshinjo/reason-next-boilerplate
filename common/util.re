@@ -11,6 +11,7 @@ type spell = {
   duration: string,
   classes: array(string),
   components: array(string),
+  range: string,
 };
 
 module Helpers = {
