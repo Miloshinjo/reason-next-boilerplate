@@ -12,6 +12,8 @@ type spell = {
   classes: array(string),
   components: array(string),
   range: string,
+  attackSave: string,
+  damageEffect: string,
 };
 
 module Helpers = {

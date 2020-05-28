@@ -17,6 +17,8 @@ let make =
       ~duration,
       ~components,
       ~range,
+      ~attackSave,
+      ~damageEffect,
     ) => {
   let (active, setActive) = React.useState(() => false);
 
@@ -67,7 +69,7 @@ let make =
     </div>
     {active
        ? <div className="px-10 py-2 flex flex-col items-start">
-           <div className="grid grid-cols-4 w-full mt-2">
+           <div className="grid grid-cols-4 w-full mt-2 row-gap-1">
              <div className="flex flex-col">
                <div className="text-xs"> "Casting time"->React.string </div>
                <div className="font-medium -mt-1">
@@ -96,20 +98,37 @@ let make =
                  school->React.string
                </div>
              </div>
+             <div className="flex flex-col">
+               <div className="text-xs"> "Damage/Effect"->React.string </div>
+               <div className="font-medium capitalize -mt-1">
+                 damageEffect->React.string
+               </div>
+             </div>
+             <div className="flex flex-col">
+               <div className="text-xs"> "Attack/Save"->React.string </div>
+               <div className="font-medium capitalize -mt-1">
+                 attackSave->React.string
+               </div>
+             </div>
            </div>
            <p className="text mt-3"> description->React.string </p>
-           <div className="flex mt-4">
-             {classes
-              ->Belt.Array.map(klass => {
-                  <div
-                    className={
-                      "capitalize mr-2 text-sm font-medium text-" ++ klass
-                    }
-                    key=klass>
-                    klass->React.string
-                  </div>
-                })
-              ->React.array}
+           <div className="mt-4 flex justify-between w-full items-center">
+             <div className="flex">
+               {classes
+                ->Belt.Array.map(klass => {
+                    <div
+                      className={
+                        "capitalize mr-2 text-sm font-medium text-" ++ klass
+                      }
+                      key=klass>
+                      klass->React.string
+                    </div>
+                  })
+                ->React.array}
+             </div>
+             <Link href="/spells/[slug]" _as={"/spells/" ++ slug}>
+               <a> "Go to spell page"->React.string </a>
+             </Link>
            </div>
          </div>
        : React.null}

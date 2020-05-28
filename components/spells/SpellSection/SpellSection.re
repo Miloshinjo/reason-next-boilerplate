@@ -20,6 +20,8 @@ let make = (~spells, ~level) => {
           slug={spell.slug}
           components={spell.components}
           range={spell.range}
+          attackSave={spell.attackSave}
+          damageEffect={spell.damageEffect}
         />
       )
     ->React.array;
