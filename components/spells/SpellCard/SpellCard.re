@@ -68,14 +68,9 @@ let make =
       </div>
     </div>
     {active
-       ? <div className="px-10 py-2 flex flex-col items-start">
-           <div className="grid grid-cols-4 w-full mt-2 row-gap-1">
-             <div className="flex flex-col">
-               <div className="text-xs"> "Casting time"->React.string </div>
-               <div className="font-medium -mt-1">
-                 castingTime->React.string
-               </div>
-             </div>
+       ? <div className="lg:px-10 py-2 flex flex-col items-start">
+           <div
+             className="grid grid-cols-2 lg:grid-cols-4 w-full mt-2 row-gap-1">
              <div className="flex flex-col">
                <div className="text-xs"> "Duration"->React.string </div>
                <div className="font-medium -mt-1">
@@ -108,6 +103,12 @@ let make =
                <div className="text-xs"> "Attack/Save"->React.string </div>
                <div className="font-medium capitalize -mt-1">
                  attackSave->React.string
+               </div>
+             </div>
+             <div className="flex flex-col">
+               <div className="text-xs"> "Casting time"->React.string </div>
+               <div className="font-medium -mt-1">
+                 castingTime->React.string
                </div>
              </div>
            </div>

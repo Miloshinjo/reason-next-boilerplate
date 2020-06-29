@@ -50,7 +50,6 @@ module.exports = {
   },
   variants: {
     width: ['responsive'],
-    textShadow: ['responsive', 'hover'],
   },
-  plugins: [require('tailwindcss-textShadow')],
+  plugins: [],
 };
