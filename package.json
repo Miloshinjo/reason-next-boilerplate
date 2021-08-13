@@ -13,7 +13,7 @@
     "express": "^4.17.1",
     "gentype": "^3.6.0",
     "gray-matter": "^4.0.2",
-    "next": "^9.4.1",
+    "next": "^11.1.0",
     "next-transpile-modules": "^3.2.0",
     "re-formality": "^4.0.0-beta.7",
     "react": "^16.13.1",
