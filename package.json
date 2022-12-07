@@ -10,7 +10,7 @@
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^2.1.2",
     "bs-axios": "0.0.43",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "gentype": "^3.6.0",
     "gray-matter": "^4.0.2",
     "next": "^9.4.1",
